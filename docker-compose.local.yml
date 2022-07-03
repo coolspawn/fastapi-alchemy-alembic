@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  db:
+    image: registry.yandex.net/stall/postgres:10.5
+    expose:
+      - 5432
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=woody
+      - POSTGRES_USER=taxi
+      - POSTGRES_PASSWORD=test
+    healthcheck:
+      test: "pg_isready --host localhost --port 5432"
+      interval: 1s
+      timeout: 2s
+      retries: 3
+
